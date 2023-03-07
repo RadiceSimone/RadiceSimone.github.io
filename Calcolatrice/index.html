@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <h1 align = "center">CALCOLATRICE</h1>
+    </head>
+
+
+    <script>
+        function calcola(segno){
+        var n1 = document.forms["primoN"]["num1"].value;
+        var n2 = document.forms["secondoN"]["num2"].value;
+        var ris;
+        
+            if(segno == "+"){
+                ris = +n1 + +n2;
+            }
+            else if(segno == "-"){
+                ris = n1 - n2;
+            }
+            else if(segno == "*"){
+                ris = n1 * n2;
+            }
+            else if(segno == "/"){
+                ris = n1 / n2;
+            }
+            document.getElementById("risultato").innerHTML = ris;
+        }
+    </script>
+
+    <body>
+        <div align = "center" style ="border-color: black;">
+            <form name="primoN" method="post">Primo numero: <input type="text" name="num1"></form>
+            <form name="secondoN" method="post">Secondo numero: <input type="text" name="num2"></form>
+        
+            <button type="button" onclick = "calcola('+')">+</button>
+            <button type="button" onclick = "calcola('-')">-</button>
+            <button type="button" onclick = "calcola('*')">*</button>
+            <button type="button" onclick = "calcola('/')">/</button>
+
+            <p id = "risultato"></p>
+        </div>
+        
+        <a href = "https://radicesimone.github.io"><img src = "img/home.png" height = "50" width = "50"></a>
+    </body>
+</html>
