@@ -1,44 +1,74 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <h1 align = "center">CALCOLATRICE</h1>
-    </head>
 
+<head>
+    <title>CALCOLATRICE</title>
+</head>
+
+<body style="background-color: black;">
 
     <script>
-        function calcola(segno){
-        var n1 = document.forms["primoN"]["num1"].value;
-        var n2 = document.forms["secondoN"]["num2"].value;
-        var ris;
-        
-            if(segno == "+"){
-                ris = +n1 + +n2;
-            }
-            else if(segno == "-"){
-                ris = n1 - n2;
-            }
-            else if(segno == "*"){
-                ris = n1 * n2;
-            }
-            else if(segno == "/"){
-                ris = n1 / n2;
-            }
-            document.getElementById("risultato").innerHTML = ris;
+        function scrivi(elemento) {
+            document.getElementById('ris').value += elemento;
+        }
+
+        function cancella() {
+            document.getElementById('ris').value = '';
+        }
+
+        function calcola() {
+            var espressione = document.getElementById('ris').value;
+            var risultato = eval(espressione);
+            document.getElementById('ris').value = risultato;
         }
     </script>
 
-    <body>
-        <div align = "center" style ="border-color: black;">
-            <form name="primoN" method="post">Primo numero: <input type="text" name="num1"></form>
-            <form name="secondoN" method="post">Secondo numero: <input type="text" name="num2"></form>
-        
-            <button type="button" onclick = "calcola('+')">+</button>
-            <button type="button" onclick = "calcola('-')">-</button>
-            <button type="button" onclick = "calcola('*')">*</button>
-            <button type="button" onclick = "calcola('/')">/</button>
+    <style>
+        input[type="button"] {
+            font-size: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: 1;
+            border-color: white;
+        }
+    </style>
 
-            <p id = "risultato"></p>
-        </div>
-        
-        <a href = "https://radicesimone.github.io"><img src = "img/home.png" height = "50" width = "50"></a>
-    </body>
+    <h1 style="color: white; font-family: monospace;" align="center">CALCOLATRICE ONLINE</h1>
+
+    <table border="1" style="background-color: rgb(1, 1, 63);border-color: white;" cellspacing="0" cellpadding="8"
+        align="center">
+        <tr>
+            <td colspan="4"><input type="text" id="ris" size="20"
+                    style="font-size: 20px;color: black; background-color: white;" disabled></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="scrivi('7')"></td>
+            <td><input type="button" value="8" onclick="scrivi('8')"></td>
+            <td><input type="button" value="9" onclick="scrivi('9')"></td>
+            <td><input type="button" value="÷" onclick="scrivi('/')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="scrivi('4')"></td>
+            <td><input type="button" value="5" onclick="scrivi('5')"></td>
+            <td><input type="button" value="6" onclick="scrivi('6')"></td>
+            <td><input type="button" value="*" onclick="scrivi('*')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="scrivi('1')"></td>
+            <td><input type="button" value="2" onclick="scrivi('2')"></td>
+            <td><input type="button" value="3" onclick="scrivi('3')"></td>
+            <td><input type="button" value="-" onclick="scrivi('-')"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="0" onclick="scrivi('0')"></td>
+            <td><input type="button" value="C" onclick="cancella()"></td>
+            <td><input type="button" value="=" onclick="calcola()"></td>
+            <td><input type="button" value="+" onclick="scrivi('+')"></td>
+        </tr>
+    </table>
+
+    <a href="https://radicesimone.github.io"><img height="50" width="50" src="img/homeNEG.png"></a>
+</body>
+
 </html>
