@@ -8,17 +8,44 @@
 <body style="background-color: black;">
 
     <script>
+        var n1 = 0;
+        var n2 = 0;
+        var segno;
+
         function scrivi(elemento) {
+            if(elemento == '+' || elemento == '-' || elemento == '*' || elemento == '/'){
+                segno = elemento;
+            }
+            else if(n1 > 0){
+                n2 = elemento;
+            }
+            else{
+                n1 = elemento;
+            }
             document.getElementById('ris').value += elemento;
         }
 
         function cancella() {
+            n1 = 0;
+            n2 = 0;
+            segno = null;
             document.getElementById('ris').value = '';
         }
 
         function calcola() {
-            var espressione = document.getElementById('ris').value;
-            var risultato = eval(espressione);
+            var risultato;
+            if(segno == '+'){
+                risultato = +n1 + +n2;
+            }
+            else if(segno == '-'){
+                risultato = n1 - n2;
+            }
+            else if(segno == '*'){
+                risultato = n1 * n2;
+            }
+            else if(segno == '/'){
+                risultato = n1 / n2;
+            }
             document.getElementById('ris').value = risultato;
         }
     </script>
