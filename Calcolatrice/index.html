@@ -8,45 +8,60 @@
 <body style="background-color: black;">
 
     <script>
-        var n1 = 0;
-        var n2 = 0;
-        var segno;
+        class calcolatrice{
+            constructor(){
+                this.parziale = "";
+                this.numCorrente = "";
+                this.segno = ' ';
+            }
 
-        function scrivi(elemento) {
-            if(elemento == '+' || elemento == '-' || elemento == '*' || elemento == '/'){
-                segno = elemento;
+            aggiungiValore(n){
+                this.numCorrente += n;
+                document.getElementById('ris').value = this.numCorrente;
             }
-            else if(n1 > 0){
-                n2 = elemento;
+
+            segnoCliccato(s){
+                this.segno = s;
+                this.parziale = this.numCorrente;
+                this.numCorrente = "";
+                document.getElementById('ris').value = "";
             }
-            else{
-                n1 = elemento;
+
+            calcola(){
+                let risultato = 0;
+                if(this.segno == '+'){
+                    risultato = parseInt(this.parziale) + parseInt(this.numCorrente);
+                }
+                else if(this.segno == '-'){
+                    risultato = parseInt(this.parziale) - parseInt(this.numCorrente);
+                }
+                else if(this.segno == '*'){
+                    risultato = parseInt(this.parziale) * parseInt(this.numCorrente);
+                }
+                else if(this.segno == '/'){
+                    risultato = parseInt(this.parziale) / parseInt(this.numCorrente);
+                }
+                document.getElementById('ris').value = risultato;
+                this.parziale = "";
+                this.numCorrente = risultato;
             }
-            document.getElementById('ris').value += elemento;
+
+            cancella(){
+                this.parziale = "";
+                this.numCorrente = "";
+                this.segno = "";
+                document.getElementById('ris').value = "";
+            }
         }
 
-        function cancella() {
-            n1 = 0;
-            n2 = 0;
-            segno = null;
-            document.getElementById('ris').value = '';
+        calc = new calcolatrice();
+
+        function cambiaColore(x){
+            x.style.background = "yellow";
         }
 
-        function calcola() {
-            var risultato;
-            if(segno == '+'){
-                risultato = +n1 + +n2;
-            }
-            else if(segno == '-'){
-                risultato = n1 - n2;
-            }
-            else if(segno == '*'){
-                risultato = n1 * n2;
-            }
-            else if(segno == '/'){
-                risultato = n1 / n2;
-            }
-            document.getElementById('ris').value = risultato;
+        function coloreNormale(x){
+            x.style.background = "white";
         }
     </script>
 
@@ -70,28 +85,28 @@
                     style="font-size: 20px;color: black; background-color: white;" disabled></td>
         </tr>
         <tr>
-            <td><input type="button" value="7" onclick="scrivi('7')"></td>
-            <td><input type="button" value="8" onclick="scrivi('8')"></td>
-            <td><input type="button" value="9" onclick="scrivi('9')"></td>
-            <td><input type="button" value="÷" onclick="scrivi('/')"></td>
+            <td><input type="button" value="7" onclick="calc.aggiungiValore('7')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="8" onclick="calc.aggiungiValore('8')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="9" onclick="calc.aggiungiValore('9')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="÷" onclick="calc.segnoCliccato('/')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
         </tr>
         <tr>
-            <td><input type="button" value="4" onclick="scrivi('4')"></td>
-            <td><input type="button" value="5" onclick="scrivi('5')"></td>
-            <td><input type="button" value="6" onclick="scrivi('6')"></td>
-            <td><input type="button" value="*" onclick="scrivi('*')"></td>
+            <td><input type="button" value="4" onclick="calc.aggiungiValore('4')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="5" onclick="calc.aggiungiValore('5')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="6" onclick="calc.aggiungiValore('6')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="*" onclick="calc.segnoCliccato('*')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
         </tr>
         <tr>
-            <td><input type="button" value="1" onclick="scrivi('1')"></td>
-            <td><input type="button" value="2" onclick="scrivi('2')"></td>
-            <td><input type="button" value="3" onclick="scrivi('3')"></td>
-            <td><input type="button" value="-" onclick="scrivi('-')"></td>
+            <td><input type="button" value="1" onclick="calc.aggiungiValore('1')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="2" onclick="calc.aggiungiValore('2')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="3" onclick="calc.aggiungiValore('3')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="-" onclick="calc.segnoCliccato('-')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
         </tr>
         <tr>
-            <td><input type="button" value="0" onclick="scrivi('0')"></td>
-            <td><input type="button" value="C" onclick="cancella()"></td>
-            <td><input type="button" value="=" onclick="calcola()"></td>
-            <td><input type="button" value="+" onclick="scrivi('+')"></td>
+            <td><input type="button" value="0" onclick="calc.aggiungiValore('0')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="C" onclick="calc.cancella()" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="=" onclick="calc.calcola()" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
+            <td><input type="button" value="+" onclick="calc.segnoCliccato('+')" onmouseover="cambiaColore(this)" onmouseout="coloreNormale(this)"></td>
         </tr>
     </table>
 
