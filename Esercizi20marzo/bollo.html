@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Bollo veicolo</title>
+</head>
+
+<script>
+    function calcolaBollo(){
+        event.preventDefault();
+        let x1 = document.getElementById("auto");
+        let x2 = document.getElementById("moto");
+        let cv = document.dati.cavalli.value;
+        let classe = document.dati.classeInq.value;
+
+        if(x1.checked == true){
+            document.getElementById("imgVeicolo").src = "img2/auto.png";
+            cv = cv * 3.3;
+        }
+        else if (x2.checked = true){
+            document.getElementById("imgVeicolo").src = "img2/auto.png";
+            cv = cv * 4.5;
+        }
+
+        if(classe <= 4){
+            let surplus = (cv * 30) / 100;
+            cv = cv + surplus;
+        }
+
+        document.getElementById("bollo").innerHTML = cv + "EUR";
+    }
+    
+    form.addEventListener('submit', calcolaArea);
+</script>
+
+<body align = "center">
+    <form name="dati" onsubmit="calcolaBollo()">
+        Auto <input type="radio" id="auto">
+        <br>
+        Moto <input type="radio" id="moto">
+        <br>
+        Cavalli:
+        <input type="text" id="cavalli" name="cavalli">
+        <br>
+        Classe inquinante (EURO): 
+        <input type="number" id="classeInq" name="classeInq" min="0" max="6">
+        <br>
+        <input type="submit" value="INVIA">
+        <br>
+    </form>
+    <p><img id = "imgVeicolo" src = "" width="100px" height="100px"></p>
+    <p id = "bollo"></p>
+    <a href = "/index.html"><img src = "img/home.png" width="25px" height="25px"></p>
+</body>
+
+</html>

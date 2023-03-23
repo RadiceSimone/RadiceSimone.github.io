@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>Poligoni regolari</title>
+</head>
+
+<script>
+    function calcolaArea(){
+        event.preventDefault();
+        let nlati = document.dati.nlati.value;
+        let lato = parseFloat(document.dati.lato.value);
+        let nFisso = 0;
+        let a = 0;
+        let perimetro = 0;
+        let area = 0;
+
+        if(nlati == 3){
+            nFisso = 0.288;
+        }
+        if(nlati == 4){
+            nFisso = 0.5;
+        }
+        if(nlati == 5){
+            nFisso = 0.688;
+        }
+        if(nlati == 6){
+            nFisso = 0.866;
+        }
+        if(nlati == 7){
+            nFisso = 1.038;
+        }
+        a = nFisso * nlati;
+        perimetro = nlati * lato;
+        area = (perimetro  * a)/2;
+        document.getElementById("misuraArea").innerHTML = area + "cm";
+    }
+    
+    form.addEventListener('submit', calcolaArea);
+</script>
+
+<body align = "center">
+    <form name="dati" onsubmit="calcolaArea()">
+        NUMERO LATI:
+        <input type="number" id="nlati" name="nlati" min="3" max="7">
+        <br>
+        MISURA LATO:
+        <input type="text" id="lato" name="lato">
+        <br>
+        <input type="submit" value="INVIA">
+        <br>
+    </form>
+    <p id = "misuraArea"></p>
+    <a href = "/index.html"><img src = "img/home.png" width="25px" height="25px"></p>
+</body>
+
+</html>

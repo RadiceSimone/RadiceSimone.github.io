@@ -1,0 +1,155 @@
+<html>
+
+<head>
+    <title>Segno Zodiacale</title>
+</head>
+
+<script>
+    function controllaSegno() {
+        event.preventDefault();
+        let dataCompleta = new Date(document.dati.data.value);
+        let giorno = dataCompleta.getDate();
+        let mese = dataCompleta.getMonth() + 1;
+        let immagine = "";
+        let nome;
+
+        if (mese == 1) {
+            if(giorno <= 20){
+                immagine = "img/capricorno.png";
+                nome = "capricorno";
+            }
+            else{
+                immagine = "img/acquario.png";
+                nome = "acquario";
+            }
+        }
+        else if (mese == 2) {
+            if(giorno <= 19){
+                immagine = "img/acquario.png";
+                nome = "acquario";
+            }
+            else{
+                immagine = "img/pesci.png";
+                nome = "pesci";
+            }
+        }
+        else if (mese == 3) {
+            if(giorno <= 20){
+                immagine = "img/pesci.png";
+                nome = "pesci";
+            }
+            else{
+                immagine = "img/ariete.png";
+                nome = "ariete";
+            }
+        }
+        else if (mese == 4) {
+            if(giorno <= 20){
+                immagine = "img/ariete.png";
+                nome = "ariete";
+            }
+            else{
+                immagine = "img/toro.png";
+                nome = "toro";
+            }
+        }
+        else if (mese == 5) {
+            if(giorno <= 20){
+                immagine = "img/toro.png";
+                nome = "toro";
+            }
+            else{
+                immagine = "img/gemelli.png";
+                nome = "gemelli";
+            }
+        }
+        else if (mese == 6) {
+            if(giorno <= 21){
+                immagine = "img/gemelli.png";
+                nome = "gemelli";
+            }
+            else{
+                immagine = "img/cancro.png";
+                nome = "cancro";
+            }
+        }
+        else if (mese == 7) {
+            if(giorno <= 22){
+                immagine = "img/cancro.png";
+                nome = "cancro";
+            }
+            else{
+                immagine = "img/leone.png";
+                nome = "leone";
+            }
+        }
+        else if (mese == 8) {
+            if(giorno <= 23){
+                immagine = "img/leone.png";
+                nome = "leone";
+            }
+            else{
+                immagine = "img/vergine.png";
+                nome = "vergine";
+            }
+        }
+        else if (mese == 9) {
+            if(giorno <= 22){
+                immagine = "img/vergine.png";
+                nome = "vergine";
+            }
+            else{
+                immagine = "img/bilancia.png";
+                nome = "bilancia";
+            }
+        }
+        else if (mese == 10) {
+            if(giorno <= 22){
+                immagine = "img/bilancia.png";
+                nome = "bilancia";
+            }
+            else{
+                immagine = "img/scorpione.png";
+                nome = "scorpione";
+            }
+        }
+        else if (mese == 11) {
+            if(giorno <= 22){
+                immagine = "img/scorpione.png";
+                nome = "scorpione";
+            }
+            else{
+                immagine = "img/sagittario.png";
+                nome = "sagittario";
+            }
+        }
+        else if (mese == 12) {
+            if(giorno <= 21){
+                immagine = "img/sagittario.png";
+                nome = "sagittario";
+            }
+            else{
+                immagine = "img/capricorno.png";
+                nome = "capricorno";
+            }
+        }
+        document.getElementById("immagineSegno").src=immagine;
+        document.getElementById("nomeSegno").innerHTML=nome;
+    }
+    form.addEventListener('submit', controllaSegno);
+</script>
+
+<body align = "center">
+    <form name="dati" onsubmit="controllaSegno()">
+        DATA DI NASCITA:
+        <input type="date" id="data" name="data">
+        <br>
+        <input type="submit" value="INVIA">
+        <br>
+    </form>
+    <p><img id = "immagineSegno" src = ""></p>
+    <p id = "nomeSegno"></p>
+    <a href = "/index.html"><img src = "img/home.png" width="25px" height="25px"></p>
+</body>
+
+</html>
