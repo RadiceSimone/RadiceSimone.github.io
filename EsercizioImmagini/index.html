@@ -1,0 +1,99 @@
+<html>
+
+<head>
+    <title>GALLERIA IMMAGINI</title>
+</head>
+
+<style>
+    body{
+        background-color: lightgreen;
+    }
+    table{
+        width: 1000px;
+        height: 20%;
+        border: 1px solid;
+        border-collapse: collapse;
+    }
+    th, td{
+        border: 1px solid;
+        width: 25%;
+        background-color: white;
+    }
+    img{
+        height: 250px;
+        width: 250px;
+    }
+    form{
+        font-size: 20px;
+        font-family:'Times New Roman', Times, serif;
+    }
+    select, input{
+        font-size: 15px;
+    }
+</style>
+
+<script>
+    function caricaImmagini(){
+        event.preventDefault();
+        let lista = document.getElementById("immagini");
+        let scelta = lista.options[lista.selectedIndex].text;
+
+        let x1 = document.getElementById("sfondi");
+        let x2 = document.getElementById("auto");
+        let x3 = document.getElementById("pizze");
+
+        if(scelta == "Buongiorno"){
+            x1.style.display = "block";
+            x2.style.display = "none";
+            x3.style.display = "none";
+        }
+        if(scelta == "Macchine tuning"){
+            x1.style.display = "none";
+            x2.style.display = "block";
+            x3.style.display = "none";
+        }
+        if(scelta == "Pizze strane"){
+            x1.style.display = "none";
+            x2.style.display = "none";
+            x3.style.display = "block";
+        }
+        
+    }
+    form.addEventListener('submit', caricaImmagini);
+</script>
+
+<body>
+    <form id = "info" onsubmit="caricaImmagini()">
+        SCEGLI TEMA IMMAGINI: 
+        <select name="immagini" id="immagini">
+            <option value="sfondi">Buongiorno</option>
+            <option value="macchine">Macchine tuning</option>
+            <option value="pizze">Pizze strane</option>
+        </select>
+        <input type="submit" value="INVIA">
+    </form>
+
+    <table>
+        <tr id = "sfondi" style="display:none;">
+            <td><a target="_blank" href="img/sfondo1.png"><img src="img/sfondo1.png"></a></td>
+            <td><a target="_blank" href="img/sfondo2.png"><img src="img/sfondo2.png"></a></td>
+            <td><a target="_blank" href="img/sfondo3.png"><img src="img/sfondo3.png"></a></td>
+            <td><a target="_blank" href="img/sfondo4.png"><img src="img/sfondo4.png"></a></td>
+        </tr>
+        <tr id = "auto" style="display:none">
+            <td><a target="_blank" href="img/auto1.png"><img src="img/auto1.png"></a></td>
+            <td><a target="_blank" href="img/auto2.png"><img src="img/auto2.png"></a></td>
+            <td><a target="_blank" href="img/auto3.png"><img src="img/auto3.png"></a></td>
+            <td><a target="_blank" href="img/auto4.png"><img src="img/auto4.png"></a></td>
+        </tr>
+        <tr id = "pizze" style="display:none">
+            <td><a target="_blank" href="img/pizza1.png"><img src="img/pizza1.png"></a></td>
+            <td><a target="_blank" href="img/pizza2.png"><img src="img/pizza2.png"></a></td>
+            <td><a target="_blank" href="img/pizza3.png"><img src="img/pizza3.png"></a></td>
+            <td><a target="_blank" href="img/pizza4.png"><img src="img/pizza4.png"></a></td>
+        </tr>
+    </table>
+    <p align = "left" style = "font-size: 25px;"><a href="/index.html">Home</a></p>
+</body>
+
+</html>
