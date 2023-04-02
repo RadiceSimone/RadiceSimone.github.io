@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>TODO List</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+        const lista = new Lista(); 
+    </script>
+
+</head>
+
+<body>
+    <h1>TODO List</h1>
+    <div>
+        <form name="crea" onsubmit="lista.add()">
+            <input type="text" id="nome">
+            <input type="date" id="data">
+            <input type="submit" value="Aggiungi">
+            <br>
+            <input type="button" value="ELIMINA TUTTI" onclick="lista.eliminaTutti()">
+            <input type="button" value="MOSTRA/NASCONDI URGENTI" onclick="lista.urgenti()">
+            <input type="button" value="ORDINA PER SCADENZA" onclick="lista.ordinaPerScadenza()">
+        </form>
+
+        <table id="table">
+            <tr class="attività">
+                <td><input type="checkbox" id="1" onclick="lista.check(id)"></td>
+                <td>
+                    <input type="text" id="nomeAttività" onclick="lista.abilitaModifica(1)" class="lista">
+                </td>
+                <td>
+                    <input type="text" id="dataAttività" onclick="lista.abilitaModifica(1)" class="lista">
+                </td>
+                <td><input type="button" onclick="lista.eliminaSingolo(id)" value="ELIMINA" id="1"></td>
+            </tr>
+            <tr class="attività">
+                <td><input type="checkbox" id="2" onclick="lista.check(id)"></td>
+                <td>
+                    <input type="text" id="nomeAttività" onclick="lista.abilitaModifica(2)" class="lista">
+                </td>
+                <td>
+                    <input type="text" id="dataAttività" onclick="lista.abilitaModifica(2)" class="lista">
+                </td>
+                <td><input type="button" onclick="lista.eliminaSingolo(id)" value="ELIMINA" id="2"></td>
+            </tr>
+            <tr class="attività">
+                <td><input type="checkbox" id="3" onclick="lista.check(id)"></td>
+                <td>
+                    <input type="text" id="nomeAttività" onclick="lista.abilitaModifica(3)" class="lista">
+                </td>
+                <td>
+                    <input type="text" id="dataAttività" onclick="lista.abilitaModifica(3)" class="lista">
+                </td>
+                <td><input type="button" onclick="lista.eliminaSingolo(id)" value="ELIMINA" id="3"></td>
+            </tr>
+            <tr class="attività">
+                <td><input type="checkbox" id="4" onclick="lista.check(id)"></td>
+                <td>
+                    <input type="text" id="nomeAttività" onclick="lista.abilitaModifica(4)" class="lista">
+                </td>
+                <td>
+                    <input type="text" id="dataAttività" onclick="lista.abilitaModifica(4)" class="lista">
+                </td>
+                <td><input type="button" onclick="lista.eliminaSingolo(id)" value="ELIMINA" id="4"></td>
+            </tr>
+            <tr class="attività">
+                <td><input type="checkbox" id="5" onclick="lista.check(id)"></td>
+                <td>
+                    <input type="text" id="nomeAttività" onclick="lista.abilitaModifica(5)" class="lista">
+                </td>
+                <td>
+                    <input type="text" id="dataAttività" onclick="lista.abilitaModifica(5)" class="lista">
+                </td>
+                <td><input type="button" onclick="lista.eliminaSingolo(id)" value="ELIMINA" id="5"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="button" id="salvaModifica" style="display:none" value="SALVA MODIFICHE" onclick="lista.salvaModifica()" style="text-align: center;">
+        <br>
+        <a href="/index.html">Home</a>
+    </div>
+    
+</body>
+
+</html>
