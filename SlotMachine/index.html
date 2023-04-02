@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <title>SLOT MACHINE</title>
+
+
+<script>
+    let crediti = 10;
+    let val1, val2, val3;
+    let vincita = 0;
+    const valCrediti = 0.10;
+
+    function generaSpin() {
+        event.preventDefault();
+        if (crediti > 0) {
+            crediti--;
+            val1 = Math.floor(Math.random() * 10);
+            val2 = Math.floor(Math.random() * 10);
+            val3 = Math.floor(Math.random() * 10);
+
+            document.getElementById("val1").src = "img/" + val1 + ".png";
+            document.getElementById("val2").src = "img/" + val2 + ".png";
+            document.getElementById("val3").src = "img/" + val3 + ".png";
+
+   
+            if(val1 == val2 && val2 == val3 && val1 == val3){
+                vincita = 50*(val1+1);
+            }
+            else if(val1 == val2 || val2 == val3){
+                vincita = 20*(val2+1);
+            }
+            else if(val1 == val3){
+                vincita = 5*(val1+1);
+            }
+            else{
+                vincita = 0;
+            }
+
+            crediti += vincita;
+            document.getElementById("crediti").innerHTML = crediti + " crediti";
+            if(vincita > 0){
+                alert("HAI VINTO " + vincita) + " CREDITI";
+            }
+            
+        }
+        else {
+            alert("CREDITI FINITI, HAI PERSO!");
+        }
+    }
+
+    function incassa(){
+        event.preventDefault();
+        alert("HAI INCASSATO " + crediti*valCrediti + " EURO");
+        document.getElementById("crediti").innerHTML = " 10 crediti";
+        crediti = 10;
+    }
+
+</script>
+
+<style>
+    .titolo{
+        width: 500px;
+        height: 300px;
+    }
+    img{
+        width: 200px;
+        height: 250px;
+    }
+    body{
+        background-color: red;
+    }
+    div{
+        text-align: center;
+    }
+    table{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    p{
+        color: white;
+        font-family: Verdana;
+        font-size: 30px;
+    }
+    input{
+        font-size: 20px;
+    }
+</style>
+
+</head>
+<body>
+    <div>
+        <img src = "img/titolo.png" class="image titolo">
+        <table>
+            <form name="input" onsubmit="generaSpin()"></form>
+            <tr>
+                <td><img src = "img/7.png" id ="val1"></td>
+                <td><img src = "img/7.png" id ="val2"></td>
+                <td><img src = "img/7.png" id ="val3"></td>
+                <td><img src= "img/leva.png" onclick="generaSpin()"></td>
+            </tr>
+            </form>
+        </table>
+        <td><input type="button" onclick="incassa()" value="INCASSA"></td>
+        <p id = "crediti">10 crediti</p>
+    </div>
+    <a href="/index.html">Home</a>
+</body>
+
+</html>
