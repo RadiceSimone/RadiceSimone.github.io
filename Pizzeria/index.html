@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style/style.css">
+
+    <script src="script/Pizza.js"></script>
+    <script src="script/Carrello.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> 
+    <script> 
+        const carrello = new Carrello(); 
+    </script>
+
+    <body>
+        <table>
+            <tr>
+                <td>
+                <div class="grid-container">
+                    <div class="grid-item" id = "Margherita" onclick="carrello.aggiungiPizza(id)">Margherita<img src = "img/pizza.png"></div>
+                    <div class="grid-item" id = "Prosciutto" onclick="carrello.aggiungiPizza(id)">Prosciutto<img src = "img/pizza.png"></div>
+                    <div class="grid-item" id = "Patatine" onclick="carrello.aggiungiPizza(id)">Patatine<img src = "img/pizza.png"></div>
+                    <div class="grid-item" id = "Wurstel" onclick="carrello.aggiungiPizza(id)">Wurstel<img src = "img/pizza.png"></div>
+                    <div class="grid-item" id = "Rucola" onclick="carrello.aggiungiPizza(id)">Rucola<img src = "img/pizza.png"></div>
+                    <div class="grid-item" id = "Salame piccante" onclick="carrello.aggiungiPizza(id)">Salame piccante<img src = "img/pizza.png"></div>
+                  </div>
+                </td>
+                <td>
+                    <img src = "img/pizzaiolo.png">
+                </td>
+                <td>
+                    <table id = "listaPizze"></table>
+                </td>
+            </tr>
+            
+        </table>
+    </body>
+</head>
+
+</html>
