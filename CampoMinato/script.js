@@ -1,4 +1,14 @@
+function controlla(x1, y1)        // ritorna le coordinate.
+{
+  if ((x1 >= 0) && (y1 >= 0) && (x1 < colonne) && (y1 < righe)) { //controlla che non siano fuori
+    return campo[x1 + y1 * colonne];
+  }
+}
 
+function getImmagine(index) //ritorna i caratteri dell'getImmagine delle celle
+{
+  return celle[index].src.substr(celle[index].src.length - 5, 1);
+}
 
 function creaCampo() //crea campo da gioco
 {
@@ -12,7 +22,7 @@ function creaCampo() //crea campo da gioco
   {
     celle[i] = document.createElement('img');
     celle[i].src = "img/x.png";
-    celle[i].style = "position:absolute;height:30px; width: 30px";
+    celle[i].style = "position:absolute;height:30px; width: 30px"; //absolute: possibilità di sovrapposizione
     celle[i].style.top = 50 + Math.floor(i / colonne) * 30; //piazza verticalmente
     celle[i].style.left = 400 + i % colonne * 30; //piazza orizzontalmente
     celle[i].addEventListener('mousedown', cliccato);  //cliccato cella
@@ -110,16 +120,31 @@ function rivelaCella(index) {
   var x = index % colonne;
   var y = Math.floor(index / colonne);
 
- //finire
+  if (campo[index] == 0)  //se la cella è a 0 controlla le celle adiacenti
+  {
+    if (x > 0 && getImmagine(index - 1) == "x") { //sinistra
+      rivelaCella(index - 1);
+    }
+    if (x < (colonne - 1) && getImmagine(+index + 1) == "x") { //destra
+      rivelaCella(+index + 1);
+    }
+    if (y < (righe - 1) && getImmagine(+index + colonne) == "x") { //basso
+      rivelaCella(+index + colonne);
+    }
+    if (y > 0 && getImmagine(index - colonne) == "x") { //sopra
+      rivelaCella(index - colonne);
+    }
+    if (x > 0 && y > 0 && getImmagine(index - colonne - 1) == "x") { //alto-sinistra
+      rivelaCella(index - colonne - 1);
+    }
+    if (x < (colonne - 1) && y < (righe - 1) && getImmagine(+index + colonne + 1) == "x") { //basso-destra
+      rivelaCella(+index + colonne + 1);
+    }
+    if (x > 0 && y < (righe - 1) && y < (righe - 1) && getImmagine(+index + colonne - 1) == "x") { //basso-sinistra
+      rivelaCella(+index + colonne - 1);
+    }
+    if (x < (colonne - 1) && y > 0 && y < (righe - 1) && getImmagine(+index - colonne + 1) == "x") { //alto-destra
+      rivelaCella(+index - colonne + 1);
+    }
   }
-}  
-
-function controlla(x1, y1)        // ritorna le coordinate.
-{
-
-}
-
-function getImmagine(index) //ritorna i caratteri dell'getImmagine delle celle
-{
-//fare
-}
+}        
