@@ -1,19 +1,9 @@
-function controlla(x1, y1)        // ritorna le coordinate.
-{
-  if ((x1 >= 0) && (y1 >= 0) && (x1 < colonne) && (y1 < righe)) { //controlla che non siano fuori
-    return campo[x1 + y1 * colonne];
-  }
-}
-
-function getImmagine(index) //ritorna i caratteri dell'getImmagine delle celle
-{
-  return celle[index].src.substr(celle[index].src.length - 5, 1);
-}
-
 function creaCampo() //crea campo da gioco
 {
-  mine = 50;
-  righe = 20; colonne = 20; //grandezza campo
+  event.preventDefault();
+  mine = document.impostazioniCampo.mine.value;
+  righe = document.impostazioniCampo.righe.value; 
+  colonne = document.impostazioniCampo.colonne.value;
   rimanenti = mine;  //mine restanti
   celle = [];
   campo = [];
@@ -22,7 +12,7 @@ function creaCampo() //crea campo da gioco
   {
     celle[i] = document.createElement('img');
     celle[i].src = "img/x.png";
-    celle[i].style = "position:absolute;height:30px; width: 30px"; //absolute: possibilità di sovrapposizione
+    celle[i].style = "position:absolute;height:30px; width: 30px; border: 1px solid black"; //absolute: possibilità di sovrapposizione
     celle[i].style.top = 50 + Math.floor(i / colonne) * 30; //piazza verticalmente
     celle[i].style.left = 400 + i % colonne * 30; //piazza orizzontalmente
     celle[i].addEventListener('mousedown', cliccato);  //cliccato cella
@@ -32,7 +22,7 @@ function creaCampo() //crea campo da gioco
   //piazza mine
   piazzate = 0;
   do {
-    i = Math.floor(Math.random() * colonne * righe);   //cella random
+    let i = Math.floor(Math.random() * colonne * righe);   //cella random
     if (campo[i] != 'mine') //controlla che non ci sia
     {
       campo[i] = 'mine';
@@ -58,11 +48,23 @@ function creaCampo() //crea campo da gioco
           + ((controlla(x + 1, y) == 'mine') | 0); //destra
       }
     }
+
 }
 
+function controlla(x1, y1)        // ritorna le coordinate.
+{
+  if ((x1 >= 0) && (y1 >= 0) && (x1 < colonne) && (y1 < righe)) { //controlla che non siano fuori
+    return campo[x1 + y1 * colonne];
+  }
+}
+
+function getImmagine(index) //ritorna i caratteri dell'getImmagine delle celle
+{
+  return celle[index].src.substr(celle[index].src.length - 5, 1);
+}
 
 function cliccato(event) { //quando si clicca
-  var source = event.target;
+  let source = event.target;
   id = source.id;  //cella cliccata
 
   if (event.which == 3)  //tasto destro cliccato
@@ -117,8 +119,8 @@ function rivelaCella(index) {
   celle[index].src = "img/" + campo[index] + ".png";  //mette il numero
 
   //converte in coordinate
-  var x = index % colonne;
-  var y = Math.floor(index / colonne);
+  let x = index % colonne;
+  let y = Math.floor(index / colonne);
 
   if (campo[index] == 0)  //se la cella è a 0 controlla le celle adiacenti
   {
