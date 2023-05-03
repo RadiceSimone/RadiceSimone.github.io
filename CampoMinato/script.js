@@ -127,11 +127,11 @@ function rivelaCella(index) {
     if (x > 0 && getImmagine(index - 1) == "x") { //sinistra
       rivelaCella(index - 1);
     }
-    if (x < (colonne - 1) && getImmagine(+index + 1) == "x") { //destra
-      rivelaCella(+index + 1);
+    if (x < (colonne - 1) && getImmagine(index + 1) == "x") { //destra
+      rivelaCella(index + 1);
     }
-    if (y < (righe - 1) && getImmagine(+index + colonne) == "x") { //basso
-      rivelaCella(+index + colonne);
+    if (y < (righe - 1) && getImmagine(index + colonne) == "x") { //basso
+      rivelaCella(index + colonne);
     }
     if (y > 0 && getImmagine(index - colonne) == "x") { //sopra
       rivelaCella(index - colonne);
@@ -139,14 +139,14 @@ function rivelaCella(index) {
     if (x > 0 && y > 0 && getImmagine(index - colonne - 1) == "x") { //alto-sinistra
       rivelaCella(index - colonne - 1);
     }
-    if (x < (colonne - 1) && y < (righe - 1) && getImmagine(+index + colonne + 1) == "x") { //basso-destra
-      rivelaCella(+index + colonne + 1);
+    if (x < (colonne - 1) && y < (righe - 1) && getImmagine(index + colonne + 1) == "x") { //basso-destra
+      rivelaCella(index + colonne + 1);
     }
-    if (x > 0 && y < (righe - 1) && y < (righe - 1) && getImmagine(+index + colonne - 1) == "x") { //basso-sinistra
-      rivelaCella(+index + colonne - 1);
+    if (x > 0 && y < (righe - 1) && y < (righe - 1) && getImmagine(index + colonne - 1) == "x") { //basso-sinistra
+      rivelaCella(index + colonne - 1);
     }
-    if (x < (colonne - 1) && y > 0 && y < (righe - 1) && getImmagine(+index - colonne + 1) == "x") { //alto-destra
-      rivelaCella(+index - colonne + 1);
+    if (x < (colonne - 1) && y > 0 && y < (righe - 1) && getImmagine(index - colonne + 1) == "x") { //alto-destra
+      rivelaCella(index - colonne + 1);
     }
   }
 }        
