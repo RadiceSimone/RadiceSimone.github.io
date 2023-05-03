@@ -6,15 +6,17 @@ function creaCampo() //crea campo da gioco
   colonne = document.impostazioniCampo.colonne.value;
   rimanenti = mine;  //mine restanti
   celle = [];
-  campo = [];
+  campo = []; 
   cliccate = 0;
-  for (let i = 0; i < righe * colonne; i++) //crea celle
+  for (let i = 0; i < righe * colonne; i++) //crea celle, una riga per volta
   {
     celle[i] = document.createElement('img');
     celle[i].src = "img/x.png";
     celle[i].style = "position:absolute;height:30px; width: 30px; border: 1px solid black"; //absolute: possibilità di sovrapposizione
-    celle[i].style.top = 50 + Math.floor(i / colonne) * 30; //piazza verticalmente
-    celle[i].style.left = 400 + i % colonne * 30; //piazza orizzontalmente
+    celle[i].style.top = 50 + Math.floor(i / colonne) * 30; //coordinate verticali
+    //50 è la distanza dal bordo superiore della pagina, math.floor arrotonda e 30 è la distanza tra le righe
+    celle[i].style.left = 400 + i % colonne * 30; //coordinate orizzontali
+    //400 è la distanza dal bordo dell pagina, i % colonne = colonna della cella e 30 è la distanza tra celle
     celle[i].addEventListener('mousedown', cliccato);  //cliccato cella
     celle[i].id = i;
     document.body.appendChild(celle[i]); //aggiunge cella all'html
@@ -30,14 +32,14 @@ function creaCampo() //crea campo da gioco
     }
   } while (piazzate < mine);
 
-
+  //inserisce numeri mine adiacenti
   for (let x = 0; x < colonne; x++) //per ogni colonna
-    for (let y = 0; y < righe + 1; y++) //per ogni riga
+    for (let y = 0; y < righe; y++) //per ogni riga
     {
       if (controlla(x, y) != 'mine') //se non è una mina
       {
         campo[x + y * colonne] = // valore della cella = somma delle 8 celle adiacenti
-          //se da una mina allora è 1 altrimenti 0
+          //se da una mina allora è 1 altrimenti 0 (l'or 0 converte)
           ((controlla(x, y + 1) == 'mine') | 0) //basso
           + ((controlla(x - 1, y + 1) == 'mine') | 0) //basso-sinistra
           + ((controlla(x + 1, y + 1) == 'mine') | 0) //basso-destra
@@ -54,13 +56,13 @@ function creaCampo() //crea campo da gioco
 function controlla(x1, y1)        // ritorna le coordinate.
 {
   if ((x1 >= 0) && (y1 >= 0) && (x1 < colonne) && (y1 < righe)) { //controlla che non siano fuori
-    return campo[x1 + y1 * colonne];
+    return campo[x1 + y1 * colonne]; 
   }
 }
 
-function getImmagine(index) //ritorna i caratteri dell'getImmagine delle celle
+function getImmagine(index) //ritorna il carattere img della cella
 {
-  return celle[index].src.substr(celle[index].src.length - 5, 1);
+  return celle[index].src.substr(celle[index].src.length - 5, 1); 
 }
 
 function cliccato(event) { //quando si clicca
