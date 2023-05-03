@@ -1,13 +1,22 @@
 <html>
 
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> 
   <script src="script.js"></script>
 </head>
 
-<body onLoad="creaCampo()" oncontextmenu="return false;">
-  <br><br>
-  <label id="status" onclick="creaCampo()">Gioca</label>
-  <a href = "/index.html">Home</a>
+<body style="background-color: lightsteelblue;">
+  <h1 style="color: red">CAMPO MINATO</h1>
+  <form name="impostazioniCampo" onsubmit="creaCampo()">
+    Mine: <input type="number" min="1" max="100" name="mine">
+    <br>
+    Righe: <input type="number" min="1" max="100" name="righe">
+    <br>
+    Colonne: <input type="number" min="1" max="100" name="colonne">
+    <br>
+    <input type="submit" value="GIOCA">
+  </form>
+  <a href="/index.html">Home</a>
 </body>
 
 </html>
