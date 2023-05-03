@@ -8,7 +8,7 @@ function creaCampo() //crea campo da gioco
   celle = [];
   campo = [];
   cliccate = 0;
-  for (i = 0; i < righe * colonne; i++) //crea celle
+  for (let i = 0; i < righe * colonne; i++) //crea celle
   {
     celle[i] = document.createElement('img');
     celle[i].src = "img/x.png";
@@ -31,8 +31,8 @@ function creaCampo() //crea campo da gioco
   } while (piazzate < mine);
 
 
-  for (var x = 0; x < colonne; x++) //per ogni colonna
-    for (y = 0; y < righe + 1; y++) //per ogni riga
+  for (let x = 0; x < colonne; x++) //per ogni colonna
+    for (let y = 0; y < righe + 1; y++) //per ogni riga
     {
       if (controlla(x, y) != 'mine') //se non è una mina
       {
@@ -89,7 +89,7 @@ function cliccato(event) { //quando si clicca
   {
     if (campo[id] == 'mine') //se è una mina (sconfitta)
     {
-      for (i = 0; i < righe * colonne; i++) {
+      for (let i = 0; i < righe * colonne; i++) {
         if (campo[i] == 'mine') {
           celle[i].src = "img/m.png"; //mostra mina
         }
