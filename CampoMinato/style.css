@@ -1,0 +1,28 @@
+body{
+    background-color: gray;
+    font-family: sans-serif;
+}
+h1{
+    color: white;
+    text-align: center;
+}
+form{
+    margin: auto;
+    text-align: center;
+    width: 30%;
+    height: auto;
+    padding: 1%; 
+    text-align: center;
+    color: black;
+    background-color: lightgray;
+    border: 1px solid black;
+}
+p{
+    color: white;
+    text-align: center;
+}
+a{
+    color: white;
+}
+
+
