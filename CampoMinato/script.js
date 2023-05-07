@@ -18,7 +18,6 @@ class Gioco {
     {
       this.celle[i] = document.createElement('img');
       this.celle[i].src = "img/x.png";
-      this.celle[i].style = "position:absolute;height:30px; width: 30px; border: 1px solid black"; //absolute: possibilità di sovrapposizione
       this.celle[i].style.top = 300 + Math.floor(i / this.colonne) * 30; //piazza verticalmente
       this.celle[i].style.left =  ($(window).width()/ 2)+ i % this.colonne * 30; //piazza orizzontalmente
       this.celle[i].addEventListener('mousedown', this.cliccato.bind(this));  //cliccato cella, bind indica che viene eseguita nel contesto della classe Gioco
