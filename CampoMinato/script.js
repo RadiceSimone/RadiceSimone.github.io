@@ -23,8 +23,12 @@ class Gioco {
       this.celle[i].style.left =  ($(window).width()/ 2)+ i % this.colonne * 30; //piazza orizzontalmente
       this.celle[i].addEventListener('mousedown', this.cliccato.bind(this));  //cliccato cella, bind indica che viene eseguita nel contesto della classe Gioco
       this.celle[i].id = i;
-      document.body.appendChild(this.celle[i]); //aggiunge cella all'html
+      document.getElementById("campoGioco").appendChild(this.celle[i]);
+      //document.body.appendChild(this.celle[i]); //aggiunge cella all'html
     }
+    
+
+
     //piazza mine
     this.piazzate = 0;
     do {
@@ -129,7 +133,7 @@ class Gioco {
   }
 
   rivelaCella(index) {
-    if (this.campo[index] != 'mine' && this.getImmagine(index) == "x") { //se non è stata cliccata e non è una mina
+    if (this.getImmagine(index) == "x" && this.campo[index] != 'mine') {
       this.cliccate++;
     }
   
