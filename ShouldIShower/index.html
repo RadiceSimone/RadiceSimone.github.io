@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <title>Should I Shower?</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="website.js"></script>
+        <script src="notification.js"></script>
+        <script>
+            const website = new Website()
+        </script>
+    </head>
+    
+    <body onload="website.loadFromLocalStorage()">
+        <h1>Should I Shower?</h1>
+        <h2>La prima piattaforma che ti consiglia se farti o meno la doccia</h2>
+        <button>Scopri come funziona</button>
+        <div>
+            <form id = "questionsForm" onsubmit="website.startAlgorithm()">
+                <legend>Ti sei fatto la doccia ieri?</legend>
+
+                <input type="radio" id="yesYesterday" name="yesterday" value="yesYesterday" checked/>
+                <label for="yesYesterday">Si</label>
+            
+                <input type="radio" id="noYesterday" name="yesterday" value="noYesterday" />
+                <label for="yesYesterday">No</label>
+
+                <legend>Hai svolto attività fisica?</legend>
+
+                <input type="radio" id="yesPhysicalAct" name="physicalAct" value="yesPhysicalAct" checked/>
+                <label for="yesPhysicalAct">Si</label>
+
+                <input type="radio" id="noPhysicalAct" name="physicalAct" value="noPhysicalAct" />
+                <label for="noPhysicalAct">No</label>
+
+                <input type="submit" value="Calcola">
+            </form>
+        </div>
+
+        <div>
+            <legend>Report settimanale</legend>
+            <table>
+                <tr id="lun">
+                    <td>LUN</td>
+                    <td id = "1">ND</td>
+                </tr>
+                <tr id="mar">
+                    <td>MAR</td>
+                    <td id = "2">ND</td>
+                </tr>
+                <tr id="mer">
+                    <td>MER</td>
+                    <td id = "3">ND</td>
+                </tr>
+                <tr id="gio">
+                    <td>GIO</td>
+                    <td id = "4">ND</td>
+                </tr>
+                <tr id="ven">
+                    <td>VEN</td>
+                    <td id = "5">ND</td>
+                </tr>
+                <tr id="sab">
+                    <td>SAB</td>
+                    <td id = "6">ND</td>
+                </tr>
+                <tr id="dom">
+                    <td>DOM</td>
+                    <td id = "7">ND</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <button onclick="startNotification()">Invia notifica ogni giorno alle 10.30</button>
+        </div>
+      
+    </body>
+</html>
