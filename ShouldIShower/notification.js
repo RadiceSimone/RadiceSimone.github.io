@@ -11,7 +11,7 @@ function startNotification() {
 }
 
 function scheduleNotifications() {
-  const orarioPianificato = parseOrarioInput("10:40");
+  const orarioPianificato = parseOrarioInput("10:43");
   if (orarioPianificato) {
     setInterval(() => {
       const now = new Date();
