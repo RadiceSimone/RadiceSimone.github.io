@@ -11,7 +11,7 @@ function startNotification() {
 }
 
 function scheduleNotifications() {
-  const orarioPianificato = parseOrarioInput("10:34");
+  const orarioPianificato = parseOrarioInput("10:37");
   if (orarioPianificato) {
     setInterval(() => {
       const now = new Date();
@@ -53,6 +53,6 @@ function sendNotification() {
   const notification = new Notification("Notifica dal Sito", options);
 
   notification.onclick = () => {
-    window.open("https://www.esempio.com", "_blank");
+    window.open("https://radicesimone.github.io/ShouldIShower/index.html", "_blank");
   };
 }
