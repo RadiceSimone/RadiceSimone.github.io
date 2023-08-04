@@ -89,7 +89,7 @@ async function notifications() {
       if (permission !== 'granted') {
         alert('You need to allow push notifications');
       } else {
-        const orarioPianificato = parseOrarioInput("15:32d");
+        const orarioPianificato = parseOrarioInput("15:38");
         
         setInterval(() => {
           const now = new Date();
