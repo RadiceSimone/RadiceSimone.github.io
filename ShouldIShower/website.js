@@ -64,6 +64,21 @@ class Website {
     }
   }
 
+  enablePhysicalActAdv(){
+    document.getElementById("lightwork").disabled = false
+    document.getElementById("mediumwork").disabled = false
+    document.getElementById("heavywork").disabled = false
+    document.getElementById("physicalActHours").disabled = false
+  }
+
+  disablePhysicalActAdv(){
+    document.getElementById("lightwork").disabled = true
+    document.getElementById("mediumwork").disabled = true
+    document.getElementById("heavywork").disabled = true
+    document.getElementById("physicalActHours").disabled = true
+
+  }
+
   /* getTemperature(){
         event.preventDefault()
         this.location = "Mariano Comense"
@@ -89,7 +104,7 @@ async function notifications() {
       if (permission !== 'granted') {
         alert('You need to allow push notifications');
       } else {
-        const orarioPianificato = parseOrarioInput("16:09");
+        const orarioPianificato = parseOrarioInput("15:32d");
         
         setInterval(() => {
           const now = new Date();
