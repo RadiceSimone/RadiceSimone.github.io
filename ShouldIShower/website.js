@@ -38,8 +38,10 @@ class Website {
     let today = new Date();
     let day = today.getDay();
 
+    console.log("pre controllo finale " , this.data)
     if (this.data[day - 1] == "ND") {
       document.getElementById(day).innerHTML = this.result;
+      this.data[day - 1] = this.result
       this.saveInLocalStorage();
     } else {
       alert("giorno già fatto!");
@@ -52,12 +54,21 @@ class Website {
 
   loadFromLocalStorage() {
     let checkDay = new Date();
-
+    
+    console.log("inizio " , this.data)
     if (checkDay.getDay != 1) {
-      this.data = JSON.parse(localStorage.getItem("user"));
+      let test = JSON.parse(localStorage.getItem("user"))
+      if(test != null){
+        this.data = JSON.parse(localStorage.getItem("user"));
+      }
+      else{
+        this.data = ["ND", "ND", "ND", "ND", "ND", "ND", "ND"];
+      }
     } else {
       this.data = ["ND", "ND", "ND", "ND", "ND", "ND", "ND"];
     }
+
+    console.log("dopo caricamento " , this.data)
 
     for (let i = 0; i < 7; i++) {
       document.getElementById(i + 1).innerHTML = this.data[i];
