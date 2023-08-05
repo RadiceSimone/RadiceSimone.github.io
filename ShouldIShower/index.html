@@ -9,10 +9,10 @@
     <script src="service-worker.js"></script>
     <script>
         const website = new Website()
-
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js');
         }
+    
     </script>
 </head>
 
@@ -22,22 +22,43 @@
     <button>Scopri come funziona</button>
     <div>
         <form id="questionsForm" onsubmit="website.startAlgorithm()">
-            <legend>Ti sei fatto la doccia ieri?</legend>
-
-            <input type="radio" id="yesYesterday" name="yesterday" value="yesYesterday" checked />
-            <label for="yesYesterday">Si</label>
-
-            <input type="radio" id="noYesterday" name="yesterday" value="noYesterday" />
-            <label for="yesYesterday">No</label>
-
-            <legend>Hai svolto attività fisica?</legend>
-
-            <input type="radio" id="yesPhysicalAct" name="physicalAct" value="yesPhysicalAct" checked />
-            <label for="yesPhysicalAct">Si</label>
-
-            <input type="radio" id="noPhysicalAct" name="physicalAct" value="noPhysicalAct" />
-            <label for="noPhysicalAct">No</label>
-
+            <br>
+            <div id="divYesterday">
+                <legend>Ti sei fatto la doccia ieri?</legend>
+                <input type="radio" id="yesYesterday" name="yesterday" value="yesYesterday" />
+                <label for="yesYesterday">Si</label>
+                <input type="radio" id="noYesterday" name="yesterday" value="noYesterday" />
+                <label for="yesYesterday">No</label>
+            </div>
+            <br>
+            <div id="divManualAct">
+                <legend>Hai svolto attività manuali? (giardinaggio, pittura...)</legend>
+                <input type="radio" id="yesPhysicalAct" name="physicalAct" value="yesPhysicalAct" />
+                <label for="yesManualAct">Si</label>
+                <input type="radio" id="noPhysicalAct" name="physicalAct" value="noPhysicalAct" />
+                <label for="noPhysicalAct">No</label>
+            </div>
+            <br>
+            <div id="divPhysicalAct" disabled>
+                <legend>Hai svolto attività fisica?</legend>
+                <input type="radio" id="yesPhysicalAct" name="physicalAct" onclick="website.enablePhysicalActAdv()" value="yesPhysicalAct" />
+                <label for="yesPhysicalAct">Si</label>
+                <input type="radio" id="noPhysicalAct" name="physicalAct" value="noPhysicalAct" onclick="website.disablePhysicalActAdv()"/>
+                <label for="noPhysicalAct">No</label>
+            </div>
+            <div id="divPhysicalActAdv">
+                <legend>Di che intensita?</legend>
+                <input type="radio" id="lightwork" name="physicalIntensity" value="lightwork" disabled/>
+                <label for="lightwork">Leggera (stretching, camminata)</label>
+                <input type="radio" id="mediumwork" name="physicalIntensity" value="mediumwork" disabled/>
+                <label for="mediumwork">Media (corsa)</label>
+                <input type="radio" id="heavywork" name="physicalIntensity" value="heavywork" disabled/>
+                <label for="heavywork">Pesante (weightlifting)</label>
+                <br>
+                <legend>Per quante ore?</legend>
+                <input type="number" id = "physicalActHours" min="0" max="10" disabled>
+            </div>
+            <br>
             <input type="submit" value="Calcola">
         </form>
     </div>
