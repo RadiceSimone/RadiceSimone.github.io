@@ -1,38 +1,134 @@
+const FORT_CONS_COLOR = "#073826"
+const CONS_COLOR = "#22d82f"
+const SCONS_COLOR = "#e17570"
+const FORT_SCONS_COLOR = "#93281f"
+
 class Website {
   constructor() {
-    this.val1 = false;
-    this.val2 = false;
+    this.yesterday = false;
+    this.manualAct = false;
+    this.physicalAct = false;
+    this.physicalActIntensity = 0;
+    this.physicalActTime = 0;
+    this.weather = '';
+    this.temperature = 0;
     this.points = 0;
-    this.location = "";
     this.result = "";
     this.data = [];
   }
 
   startAlgorithm() {
     event.preventDefault();
-
-    let radioCheck = document.getElementById("yesYesterday");
-    if (radioCheck.checked) {
-      this.val1 = true;
+    
+    //caricamento
+    document.getElementById("caricaPulsante").disabled = true;
+    document.getElementById("caricamento").style.display = "flex";
+    setTimeout(function() {
+      document.getElementById("caricaPulsante").disabled = false;
+      document.getElementById("caricamento").style.display = "none";
+       
+      //campo ieri
+    let checkValue = document.getElementById("yesYesterday");
+    if (checkValue.checked) {
+      this.yesterday = true;
+      this.points -= 5;
     } else {
-      this.val1 = false;
-      this.points += 5;
+      this.yesterday = false;
     }
 
-    radioCheck = document.getElementById("yesPhysicalAct");
-    if (radioCheck.checked) {
-      this.val2 = true;
-      this.points += 10;
+    //campo attività manuale
+    checkValue = document.getElementById("yesManualAct");
+    if (checkValue.checked) {
+      this.manualAct = true;
+      this.points += 2;
     } else {
-      this.val2 = false;
+      this.manualAct = false;
     }
 
-    if (this.points > 5) {
+    //campo attività fisica
+    checkValue = document.getElementById("yesPhysicalAct");
+    if (checkValue.checked) { //se si è fatta attività fisica procede
+      //controllo intensità
+      checkValue = document.getElementById("lightwork");
+      if(checkValue.checked){ //leggera
+        this.physicalActIntensity = 1;
+        this.points += 1;
+      }
+      else{
+        checkValue = document.getElementById("mediumwork");
+        if(checkValue.checked){ //media
+          this.physicalActIntensity = 2;
+          this.points += 2.5;
+        }
+        else{ //pesante
+          this.physicalActIntensity = 3;
+          this.points += 5;
+        }
+      }
+      //controllo ore
+      checkValue = document.getElementById("physicalActHours");
+      this.physicalActTime = checkValue.value;
+      if(this.physicalActTime <= 1){ //1 ora max
+        this.points += 1
+      }
+      else if(this.physicalActTime > 1 && this.physicalAct <= 2){ //da 1 a 2 ore
+        this.points += 2.5
+      }
+      else{ //oltre 2 ore
+        this.points += 5
+      }
+    } else {
+      this.physicalAct = false;
+    }
+
+    //campo meteo
+    checkValue = document.getElementById("sunny");
+    if(checkValue.checked){
+      this.weather = 's'
+      this.points += 2.5
+    }
+    else{
+      checkValue = document.getElementById("cloudy");
+      if(checkValue.checked){
+        this.weather = 'c'
+      }
+      else{
+        this.weather = 'r'
+        this.points -= 5
+      }
+    }
+
+    //campo temperatura
+    checkValue = document.getElementById("temperature");
+    this.temperature = checkValue.value;
+    if(this.temperature >= 30){
+      this.points += 5
+    }
+    else if(this.temperature < 30 && this.temperature > 25){
+      this.points += 2.5
+    }
+    
+
+    let color;
+
+    if (this.points >= 14.5) {
+      alert("Fortemente consigliato lavarsi");
+      this.result = "Fortemente consigliato";
+      color = 1
+    } else if(this.points < 14.5 && this.points >= 7.5){
       alert("Consigliato lavarsi");
-      this.result = "SI";
-    } else {
+      this.result = "Consigliato";
+      color = 2
+    }
+    else if(this.points < 7.5 && this.points >= 2){
       alert("Sconsigliato lavarsi");
-      this.result = "NO";
+      this.result = "Sconsigliato";
+      color = 3
+    }
+    else{
+      alert("Fortemente sconsigliato lavarsi");
+      this.result = "Fortemente sconsigliato";
+      color = 4
     }
 
     let today = new Date();
@@ -41,11 +137,26 @@ class Website {
     console.log("pre controllo finale " , this.data)
     if (this.data[day - 1] == "ND") {
       document.getElementById(day).innerHTML = this.result;
+      if(color == 1){
+        document.getElementById(day).style.backgroundColor = FORT_CONS_COLOR;
+      }
+      else if(color == 2){
+        document.getElementById(day).style.backgroundColor = CONS_COLOR;
+      }
+      else if(color == 3){
+        document.getElementById(day).style.backgroundColor = SCONS_COLOR;
+      }
+      else if(color == 4){
+        document.getElementById(day).style.backgroundColor = FORT_SCONS_COLOR;
+      }
       this.data[day - 1] = this.result
       this.saveInLocalStorage();
     } else {
       alert("giorno già fatto!");
     }
+    }, 5000); // 5000 millisecondi = 5 secondi
+
+    
   }
 
   saveInLocalStorage() {
@@ -73,6 +184,25 @@ class Website {
     for (let i = 0; i < 7; i++) {
       document.getElementById(i + 1).innerHTML = this.data[i];
     }
+
+    this.loadColors()
+  }
+
+  loadColors(){
+    for(let i = 0; i < 7; i++){
+      if(this.data[i] == "Fortemente consigliato"){
+        document.getElementById(i + 1).style.backgroundColor = FORT_CONS_COLOR;
+      }
+      else if(this.data[i] == "Consigliato"){
+        document.getElementById(i + 1).style.backgroundColor = CONS_COLOR;
+      }
+      else if(this.data[i] == "Sconsigliato"){
+        document.getElementById(i + 1).style.backgroundColor = SCONS_COLOR;
+      }
+      else if(this.data[i] == "Fortemente sconsigliato"){
+        document.getElementById(i + 1).style.backgroundColor = FORT_SCONS_COLOR;
+      }
+    }
   }
 
   enablePhysicalActAdv(){
@@ -88,6 +218,14 @@ class Website {
     document.getElementById("heavywork").disabled = true
     document.getElementById("physicalActHours").disabled = true
 
+  }
+
+  openInfo(){
+    document.getElementById("messaggio").classList.remove("hidden");
+  }
+
+  closeInfo(){
+    document.getElementById("messaggio").classList.add("hidden");
   }
 
   /* getTemperature(){
