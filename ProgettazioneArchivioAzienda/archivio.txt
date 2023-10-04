@@ -1,0 +1,6 @@
+U;Ufficio A;1;A01;10;Responsabile A
+D;Nome1 Cognome1;Indirizzo1;01/01/1990;01/01/2020;40;Ufficio A
+D;Nome2 Cognome2;Indirizzo2;02/02/1991;02/02/2019;35;Ufficio A
+D;Nome3 Cognome3;Indirizzo3;03/03/1992;03/03/2018;30;Ufficio A
+D;Nome4 Cognome4;Indirizzo4;04/04/1993;04/04/2017;25;Ufficio A
+D;Nome5 Cognome5;Indirizzo5;05/05/1994;05/05/2016;20;Ufficio A
